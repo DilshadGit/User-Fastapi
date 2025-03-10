@@ -29,4 +29,14 @@ def index():
 	return data
 
 
-	
+@app.get('/user/{user_id}')
+def get_user(user_id: int = Path(description='View user id details', gt=0, lt=3)):
+	try:
+		data = users[user_id]
+		if data != None:
+			return {'msg': 'success', 'data': users[user_id]}
+		else:
+			return {'msg': 'id not found'}
+
+	except Exception as e:
+		return {'msg': f'Error occurred: {e}'}	
