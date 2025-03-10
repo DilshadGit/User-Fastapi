@@ -46,3 +46,5 @@ DEV PAGE: http://127.0.0.1:8000/docs#/default/get_user_user__user_id__get
 ### lt = less than <
 ### ge = greater than or equal to >= 
 ### le = less than or equal to <=
+
+# Query Parameters
