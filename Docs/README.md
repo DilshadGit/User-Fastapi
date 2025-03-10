@@ -50,3 +50,8 @@ DEV PAGE: http://127.0.0.1:8000/docs#/default/get_user_user__user_id__get
 # Query Parameters
 We add another function where the user can search for both fname and lname as query parameters as an admin, but
 as not admin in the front can get or find the user with the fname, the lname and test not able to find or get in front.
+
+# Combining path and query parameters
+This is exactly like Query parameter only add another new parameter say like user_id again as an examples or lname
+The most important notice here we have set the user_name/{fname} as requested parameter and use Optional in front of str but
+in the docs page display required

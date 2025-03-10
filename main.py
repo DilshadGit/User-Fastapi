@@ -51,9 +51,10 @@ def get_user(user_id: int=Path(description='View user id details', gt=0, lt=4)):
         return {'msg': f'Error occurred: {e}'}
 
 
-# create retrive for user name
+# create retrive for user name if we add {fname} or {lname} or {user_id} after user_name/
+# in this case display in docs as required even put Optional 
 @app.get('/user_name/{fname}')
-def user_name(*, fname: Optional[str]=None, lname: Optional[str]=None, test: Optional[int]=None):
+def user_name(*, fname: Optional[str]=None, lname: Optional[str]=None, user_id: int=None, test: Optional[int]=None):
     for user_id in users:
         if users[user_id]['fname'] == fname or users[user_id]['lname'] == lname:
             return {'msg': 'success', 'data': users[user_id]}
