@@ -108,3 +108,13 @@ def update_user(user_id: int, user: UpdateUser, ):
         users[user_id].date_of_birth = user.date_of_birth
 
     return users[user_id]
+
+
+# delete user
+@app.delete('/delete/{user_id}')
+def delete_user(user_id: int):
+    if user_id not in users:
+        return {'msg': 'This user id is not exisit, please try again'}
+
+    del users[user_id]
+    return {'msg': 'The user has been deleted sucessfully.'}

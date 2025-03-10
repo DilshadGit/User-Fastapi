@@ -65,3 +65,7 @@ application has not been connect to the database now when we refresh the page th
 In the update methods need new class to be able all fields put in Optional for update not as required because sometimes may need 
 one field or two not all, so we have to create new class to give option for other fields to be optional.
 Notice: there is internal error server not very clear because no database at the moment but if create cookie maye resolve it.
+
+
+# Delete User using delete method
+Selecet user_id and use del method to delete user throw user_id
