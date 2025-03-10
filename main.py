@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Path
 # we add optional for more practice to remove require msg in dosc fname
 from typing import Optional
+from pydantic import BaseModel
 
 # named the api
 app = FastAPI()
@@ -11,23 +12,32 @@ users = {
         'fname': 'Dilshad',
         'lname': 'Abdulla',
         'email': 'dilshad.abdulla@icloud.com',
-        'db': '01.01.1977'
+        'date_of_birth': '01.01.1977'
     },
     2: {
-        'db_id': 26,
+        'id_num': 26,
         'fname': 'Alan',
         'lname': 'Shkar',
         'email': 'alan.shkar@gmail.com',
         'date_of_birth': '22.03.1999'
     },
     3: {
-        'db_id': 39,
+        'id_num': 39,
         'fname': 'Simone',
         'lname': 'David',
         'email': 'simone.david@outlook.com',
         'date_of_birth': '14.09.1986'
     }
 }
+
+class User(BaseModel):
+    id_num: int
+    fname: str
+    lname: str
+    email: str
+    date_of_birth: str
+
+
 
 
 # This is first simple api to create it
@@ -59,3 +69,12 @@ def user_name(*, fname: Optional[str]=None, lname: Optional[str]=None, user_id: 
         if users[user_id]['fname'] == fname or users[user_id]['lname'] == lname:
             return {'msg': 'success', 'data': users[user_id]}
     return {'msg': 'This user is not found'}
+
+# We create a new user using POST methods
+@app.post('/create_user/{user_id}')
+def create_new_user(user_id: int, user: User):
+    if user_id in users:
+        return {'Error': 'This user id is exists, try again'}
+
+    users[user_id] = user
+    return users[user_id]

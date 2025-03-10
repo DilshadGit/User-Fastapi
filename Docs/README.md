@@ -55,3 +55,8 @@ as not admin in the front can get or find the user with the fname, the lname and
 This is exactly like Query parameter only add another new parameter say like user_id again as an examples or lname
 The most important notice here we have set the user_name/{fname} as requested parameter and use Optional in front of str but
 in the docs page display required
+
+# Request body description and post method 
+Admin or Developer can create a new user using post method with a new user_id if not exists will ask the body request like other 
+field in the new class created but this is only to create in docs page this new user not saved in the database because our
+application has not been connect to the database now when we refresh the page the new user will disapred. Also there is no body field for the new user only request as json application.
