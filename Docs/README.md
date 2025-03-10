@@ -48,3 +48,5 @@ DEV PAGE: http://127.0.0.1:8000/docs#/default/get_user_user__user_id__get
 ### le = less than or equal to <=
 
 # Query Parameters
+We add another function where the user can search for both fname and lname as query parameters,
+also adding optional to give user extra option to enter id number also optional not required
