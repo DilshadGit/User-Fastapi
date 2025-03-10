@@ -60,3 +60,5 @@ in the docs page display required
 Admin or Developer can create a new user using post method with a new user_id if not exists will ask the body request like other 
 field in the new class created but this is only to create in docs page this new user not saved in the database because our
 application has not been connect to the database now when we refresh the page the new user will disapred. Also there is no body field for the new user only request as json application.
+
+# Create update user using put method
