@@ -1,28 +1,31 @@
 from fastapi import FastAPI, Path
+# # You can use the jsonable_encoder to convert the input data to data that can be
+# # stored as JSON (e.g. with a NoSQL database). For example, converting datetime to str.
+# from fastapi.encoders import jsonable_encoder
+
 # we add optional for more practice to remove require msg in dosc fname
-from typing import Optional
+from typing import Optional, Dict
 from pydantic import BaseModel
+
 
 # named the api
 app = FastAPI()
 
+
 users = {
     1: {
-        'id_num': 48,
         'fname': 'Dilshad',
         'lname': 'Abdulla',
         'email': 'dilshad.abdulla@icloud.com',
         'date_of_birth': '01.01.1977'
     },
     2: {
-        'id_num': 26,
         'fname': 'Alan',
         'lname': 'Shkar',
         'email': 'alan.shkar@gmail.com',
         'date_of_birth': '22.03.1999'
     },
     3: {
-        'id_num': 39,
         'fname': 'Simone',
         'lname': 'David',
         'email': 'simone.david@outlook.com',
@@ -30,13 +33,19 @@ users = {
     }
 }
 
+
 class User(BaseModel):
-    id_num: int
     fname: str
     lname: str
     email: str
     date_of_birth: str
 
+# for update clss User need to create another class to make all fields Optional
+class UpdateUser(BaseModel):
+    fname: Optional[str] = None
+    lname: Optional[str] = None
+    email: Optional[str] = None
+    date_of_birth: Optional[str] = None
 
 
 
@@ -77,4 +86,25 @@ def create_new_user(user_id: int, user: User):
         return {'Error': 'This user id is exists, try again'}
 
     users[user_id] = user
+    return users[user_id]
+
+# Create update using put methods
+@app.put('/user_update/{user_id}')
+def update_user(user_id: int, user: UpdateUser, ):
+
+    if user_id not in users:
+        return {'Error': 'This user id does not exists, try again'}
+
+    if user.fname != None:
+        users[user_id].fname = user.fname
+
+    if user.lname != None:
+        users[user_id].lname = user.lname
+
+    if user.email != None:
+        users[user_id].email = user.email
+
+    if user.date_of_birth != None:
+        users[user_id].date_of_birth = user.date_of_birth
+
     return users[user_id]
